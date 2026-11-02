@@ -1,0 +1,456 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f4f7fc">
+<title>EsExpress — Доставка завершена!</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+    --blue: #193454;
+    --orange: #f7942d;
+    --background: #f3f6fc;
+    --text: #283b52;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: var(--background);
+    font-family: 'Nunito', sans-serif;
+    color: var(--text);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px 16px;
+    overflow-x: hidden;
+}
+
+.background-decoration {
+    position: fixed;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: .35;
+    z-index: -1;
+}
+
+.decoration-one {
+    background: #ffcf9d;
+    top: -100px;
+    right: -100px;
+}
+
+.decoration-two {
+    background: #b8d8f7;
+    bottom: -100px;
+    left: -100px;
+}
+
+.card {
+    width: 100%;
+    max-width: 460px;
+    background: white;
+    border-radius: 30px;
+    padding: 35px 28px;
+    text-align: center;
+    box-shadow: 0 15px 55px rgba(34, 60, 90, .09);
+    animation: appear .8s ease;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.logo {
+    font-size: 23px;
+    font-weight: 900;
+    color: var(--blue);
+    letter-spacing: -1px;
+}
+
+.logo span {
+    color: var(--orange);
+}
+
+.subtitle {
+    margin-top: 5px;
+    font-size: 12px;
+    color: #9aa7b7;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.cat {
+    margin: 25px auto 15px;
+    width: 190px;
+    height: 190px;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-9px); }
+}
+
+h1 {
+    font-size: 29px;
+    font-weight: 900;
+    color: var(--blue);
+    line-height: 1.2;
+    margin-bottom: 12px;
+}
+
+.description {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #8290a1;
+    max-width: 340px;
+    margin: 0 auto;
+}
+
+.divider {
+    width: 45px;
+    height: 4px;
+    background: var(--orange);
+    border-radius: 10px;
+    margin: 25px auto;
+}
+
+.request {
+    font-size: 19px;
+    font-weight: 800;
+    color: var(--blue);
+    margin-bottom: 7px;
+}
+
+.request-small {
+    font-size: 13px;
+    color: #9aa7b7;
+    margin-bottom: 23px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 800;
+    padding: 15px;
+    border-radius: 14px;
+    transition: .25s ease;
+}
+
+button:active {
+    transform: scale(.97);
+}
+
+.yes {
+    background: var(--orange);
+    color: white;
+    box-shadow: 0 5px 15px rgba(247, 148, 45, .25);
+}
+
+.yes:hover {
+    background: #eb8420;
+    transform: translateY(-2px);
+}
+
+.no {
+    background: #f3f6fa;
+    color: #8290a1;
+}
+
+.no:hover {
+    background: #e9eef5;
+}
+
+.footer {
+    margin-top: 27px;
+    font-size: 11px;
+    color: #b1bbc7;
+}
+
+.footer span {
+    color: var(--orange);
+}
+
+.hidden {
+    display: none;
+}
+
+/* Экран успеха */
+
+.success-icon {
+    font-size: 65px;
+    margin: 25px 0 15px;
+    animation: pop .5s ease;
+}
+
+@keyframes pop {
+    0% { transform: scale(.2); }
+    70% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.success-title {
+    color: #26966e;
+}
+
+.success-text {
+    font-size: 15px;
+    color: #8290a1;
+    line-height: 1.7;
+    margin-top: 12px;
+}
+
+.back {
+    margin-top: 25px;
+    background: #edf4f1;
+    color: #26966e;
+    width: 100%;
+}
+
+/* Конфетти */
+
+.confetti {
+    position: fixed;
+    top: -20px;
+    width: 9px;
+    height: 13px;
+    z-index: 10;
+    animation: fall linear forwards;
+    pointer-events: none;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+@media (max-width: 400px) {
+    .card {
+        padding: 28px 21px;
+    }
+
+    h1 {
+        font-size: 25px;
+    }
+
+    .cat {
+        width: 165px;
+        height: 165px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background-decoration decoration-one"></div>
+<div class="background-decoration decoration-two"></div>
+
+<main class="card">
+
+    <div class="logo">Es<span>Express</span></div>
+    <div class="subtitle">Delivery of happiness</div>
+
+    <!-- Главный экран -->
+    <section id="main-screen">
+
+        <!-- Иллюстрация котика -->
+        <div class="cat">
+            <svg viewBox="0 0 200 200" width="100%" height="100%"
+                 xmlns="http://www.w3.org/2000/svg">
+
+                <!-- Ушки -->
+                <path d="M39 76 L32 25 Q31 12 44 22 L77 53"
+                      fill="#f5b66e" stroke="#d9914b" stroke-width="3"/>
+                <path d="M123 53 L156 22 Q169 12 168 25 L161 76"
+                      fill="#f5b66e" stroke="#d9914b" stroke-width="3"/>
+
+                <!-- Внутренняя часть ушей -->
+                <path d="M42 52 L39 31 L64 53"
+                      fill="#ee8c8c"/>
+                <path d="M136 53 L161 31 L158 52"
+                      fill="#ee8c8c"/>
+
+                <!-- Голова -->
+                <ellipse cx="100" cy="100" rx="68" ry="66"
+                         fill="#ffc982" stroke="#d9914b" stroke-width="3"/>
+
+                <!-- Щёчки -->
+                <ellipse cx="60" cy="112" rx="14" ry="8"
+                         fill="#f59e9e" opacity=".65"/>
+                <ellipse cx="140" cy="112" rx="14" ry="8"
+                         fill="#f59e9e" opacity=".65"/>
+
+                <!-- Глазки -->
+                <ellipse cx="75" cy="88" rx="5" ry="8" fill="#493c36"/>
+                <ellipse cx="125" cy="88" rx="5" ry="8" fill="#493c36"/>
+
+                <!-- Носик -->
+                <path d="M94 104 Q100 99 106 104 Q100 113 94 104"
+                      fill="#d97979"/>
+
+                <!-- Улыбка -->
+                <path d="M100 111 Q94 122 87 115 M100 111 Q106 122 113 115"
+                      fill="none" stroke="#493c36"
+                      stroke-width="2.5" stroke-linecap="round"/>
+
+                <!-- Лапки -->
+                <ellipse cx="52" cy="157" rx="19" ry="14"
+                         fill="#ffc982" stroke="#d9914b" stroke-width="2"/>
+                <ellipse cx="148" cy="157" rx="19" ry="14"
+                         fill="#ffc982" stroke="#d9914b" stroke-width="2"/>
+
+                <!-- Сердечко -->
+                <path d="M100 164 C82 149 77 137 88 132
+                         C96 128 100 137 100 137
+                         C100 137 106 128 114 132
+                         C125 137 118 150 100 164Z"
+                      fill="#f28b91"/>
+
+                <!-- Блик -->
+                <circle cx="54" cy="70" r="6" fill="white" opacity=".7"/>
+            </svg>
+        </div>
+
+        <h1>Ваша доставка<br>прибыла! 📦</h1>
+
+        <p class="description">
+            Презентация EsExpress успешно доставлена
+            до конечного получателя.
+            Спасибо, что прошли этот путь вместе с нами!
+        </p>
+
+        <div class="divider"></div>
+
+        <div class="request">
+            Остался последний вопрос...
+        </div>
+
+        <div class="request-small">
+            Котик очень надеется на вашу поддержку 🥺
+        </div>
+
+        <div class="buttons">
+            <button class="yes" onclick="accept()">
+                Конечно, заслуженная пятёрка! ❤️
+            </button>
+
+            <button class="no" onclick="decline()">
+                Я подумаю...
+            </button>
+        </div>
+
+    </section>
+
+    <!-- Экран успеха -->
+    <section id="success-screen" class="hidden">
+
+        <div class="success-icon">😻</div>
+
+        <h1 class="success-title">
+            Ура! Спасибо!
+        </h1>
+
+        <p class="success-text">
+            Котик счастлив, Максим счастлив,
+            а доставка EsExpress завершена
+            на все 100%!
+            <br><br>
+            Спасибо за внимание и хорошего дня! ❤️
+        </p>
+
+        <button class="back" onclick="location.reload()">
+            Вернуться к началу
+        </button>
+
+    </section>
+
+    <div class="footer">
+        Made with <span>♥</span> by EsExpress
+        <br>
+        Москва • 2026
+    </div>
+
+</main>
+
+<script>
+
+function accept() {
+    document.getElementById('main-screen').classList.add('hidden');
+    document.getElementById('success-screen').classList.remove('hidden');
+
+    createConfetti();
+}
+
+function decline() {
+    const messages = [
+        "Ну пожалуйста... 🥺",
+        "Котик так старался!",
+        "Всего одна маленькая пятёрочка...",
+        "Мяу? 👉👈",
+        "Я верю в ваше доброе сердце!"
+    ];
+
+    const button = document.querySelector('.no');
+    const random = Math.floor(Math.random() * messages.length);
+
+    button.textContent = messages[random];
+}
+
+function createConfetti() {
+    const colors = ['#f7942d', '#193454', '#57b995',
+                    '#f5b66e', '#ff8e9b', '#83b9e8'];
+
+    for (let i = 0; i < 90; i++) {
+        const piece = document.createElement('div');
+
+        piece.className = 'confetti';
+        piece.style.left = Math.random() * 100 + 'vw';
+        piece.style.background =
+            colors[Math.floor(Math.random() * colors.length)];
+
+        piece.style.animationDuration =
+            (2 + Math.random() * 3) + 's';
+
+        piece.style.animationDelay =
+            Math.random() * 1.5 + 's';
+
+        document.body.appendChild(piece);
+
+        setTimeout(() => piece.remove(), 6000);
+    }
+}
+
+</script>
+
+</body>
+</html>
